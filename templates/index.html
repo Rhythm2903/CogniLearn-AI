@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SynapseEdu AI | Generative Adaptive Learning & Socratic Pedagogy Platform</title>
+    <title>CogniLearn AI | Autonomous Adaptive Pedagogical Engine & Socratic Micro-Learning Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Supabase JS Client for Google OAuth -->
@@ -223,8 +223,8 @@
         },
 
         init() {
-            this.historyList = JSON.parse(localStorage.getItem('synapseedu_history') || '[]');
-            const storedUser = localStorage.getItem('synapseedu_user');
+            this.historyList = JSON.parse(localStorage.getItem('CogniLearn_history') || '[]');
+            const storedUser = localStorage.getItem('CogniLearn_user');
             if (storedUser) {
                 this.user = JSON.parse(storedUser);
                 this.isLoggedIn = true;
@@ -256,7 +256,7 @@
                     if (event === 'SIGNED_OUT') {
                         this.user = null;
                         this.isLoggedIn = false;
-                        localStorage.removeItem('synapseedu_user');
+                        localStorage.removeItem('CogniLearn_user');
                         return;
                     }
                     this.applySupabaseSession(session);
@@ -271,7 +271,7 @@
                     email: session.user.email
                 };
                 this.isLoggedIn = true;
-                localStorage.setItem('synapseedu_user', JSON.stringify(this.user));
+                localStorage.setItem('CogniLearn_user', JSON.stringify(this.user));
             }
         },
 
@@ -297,7 +297,7 @@
                 if (res.ok && data.success) {
                     this.user = data.user;
                     this.isLoggedIn = true;
-                    localStorage.setItem('synapseedu_user', JSON.stringify(data.user));
+                    localStorage.setItem('CogniLearn_user', JSON.stringify(data.user));
                     this.currentView = 'home';
                     this.authForm = { name: '', email: '', password: '' };
                 } else {
@@ -359,7 +359,7 @@
             }
             this.user = null;
             this.isLoggedIn = false;
-            localStorage.removeItem('synapseedu_user');
+            localStorage.removeItem('CogniLearn_user');
             this.currentView = 'home';
         },
 
@@ -422,7 +422,7 @@
                 timestamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
             };
             this.historyList = [entry, ...this.historyList.slice(0, 19)];
-            localStorage.setItem('synapseedu_history', JSON.stringify(this.historyList));
+            localStorage.setItem('CogniLearn_history', JSON.stringify(this.historyList));
         },
 
         loadHistoryItem(item) {
@@ -609,7 +609,7 @@
                 <span class="w-5 h-0.5 bg-slate-200 rounded-lg transition-all duration-300" :class="menuOpen ? '-rotate-45 translate-x-0.5 -translate-y-1.5' : ''"></span>
             </button>
             <button @click="currentView = 'home'" class="flex items-center gap-2 hover:scale-105 transition-all">
-                <span class="font-black text-xl bg-gradient-to-r bg-clip-text text-transparent" :class="themeConfig.gradient">SynapseEdu AI</span>
+                <span class="font-black text-xl bg-gradient-to-r bg-clip-text text-transparent" :class="themeConfig.gradient">CogniLearn AI</span>
                 <span class="text-xs bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-slate-400" x-text="themeConfig.icon"></span>
             </button>
         </div>
